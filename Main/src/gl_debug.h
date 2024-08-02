@@ -5,7 +5,7 @@
 
 #define GLCall(x) GLClearError();\
 	x;\
-	assert(GLLogCall(#x, __FILE__, __LINE__));
+	assert(GLLogCall(#x, __FILE__, __LINE__))
 
 #define GLErrorPrint(x) printf("[OpenGL error] (%d): %s %s line %d\n", x, function, file, line)
 

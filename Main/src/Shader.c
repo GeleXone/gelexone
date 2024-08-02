@@ -98,7 +98,13 @@ void shader_unbind() {
 	GLCall(glUseProgram(0));
 }
 
+void shader_set_uniform1i(Shader shader, const char* name, int i) {
+	shader_bind(shader);
+	GLCall(glUniform1i(shader_get_uniform_location(shader, name), i));
+}
+
 void shader_set_uniform4f(Shader shader, const char* name, float f1, float f2, float f3, float f4) {
+	shader_bind(shader);
 	GLCall(glUniform4f(shader_get_uniform_location(shader, name), f1, f2, f3, f4));
 }
 

@@ -18,4 +18,5 @@ void shader_bind(Shader);
 void shader_unbind();
 
 int shader_get_uniform_location(Shader shader, const char* name);
+void shader_set_uniform1i(Shader shader, const char* name, int i);
 void shader_set_uniform4f(Shader shader, const char* name, float, float, float, float);

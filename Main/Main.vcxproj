@@ -140,6 +140,8 @@
     <ClCompile Include="src\main.c" />
     <ClCompile Include="src\Renderer.c" />
     <ClCompile Include="src\Shader.c" />
+    <ClCompile Include="src\Texture.c" />
+    <ClCompile Include="src\vendor\stb_image\stb_image.c" />
     <ClCompile Include="src\VertexArray.c" />
     <ClCompile Include="src\VertexBuffer.c" />
     <ClCompile Include="src\VertexBufferLayout.c" />
@@ -149,12 +151,18 @@
     <ClInclude Include="src\IndexBuffer.h" />
     <ClInclude Include="src\Renderer.h" />
     <ClInclude Include="src\Shader.h" />
+    <ClInclude Include="src\Texture.h" />
+    <ClInclude Include="src\vendor\stb_image\stb_image.h" />
     <ClInclude Include="src\VertexArray.h" />
     <ClInclude Include="src\VertexBuffer.h" />
     <ClInclude Include="src\VertexBufferLayout.h" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="shaders\shader.glsl" />
+    <None Include="res\shaders\basic.shader" />
+    <None Include="res\shaders\textured.shader" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="..\..\..\Users\ag\Pictures\epic_yozhik.jpg" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -2,7 +2,7 @@
 
 typedef struct {
 	unsigned int type;
-	unsigned char count; //предположительно количество параметров < 256
+	unsigned short count;
 	unsigned char normalised;
 } VertexBufferLayoutElement;
 
