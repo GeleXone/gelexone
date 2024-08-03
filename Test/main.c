@@ -4,7 +4,7 @@
 #pragma comment(lib, "Xone")
 
 int main(void) {
-	printf("%f", d_sqrt(2));
+	printf("%f", x_sqrt(2));
 
 	return 0;
 }

@@ -1,5 +1,6 @@
 #include <malloc.h>
 #include <Xone/x_string.h>
+#include <Xone/x_math.h>
 
 #include "gl_debug.h"
 #include "Shader.h"
@@ -98,6 +99,11 @@ void shader_unbind() {
 	GLCall(glUseProgram(0));
 }
 
+int shader_get_uniform_location(Shader shader, const char* name) {
+	GLCall(int location = glGetUniformLocation(shader.id, name));
+	return location;
+}
+
 void shader_set_uniform1i(Shader shader, const char* name, int i) {
 	shader_bind(shader);
 	GLCall(glUniform1i(shader_get_uniform_location(shader, name), i));
@@ -108,7 +114,7 @@ void shader_set_uniform4f(Shader shader, const char* name, float f1, float f2, f
 	GLCall(glUniform4f(shader_get_uniform_location(shader, name), f1, f2, f3, f4));
 }
 
-int shader_get_uniform_location(Shader shader, const char* name) {
-	GLCall(int location = glGetUniformLocation(shader.id, name));
-	return location;
+void shader_set_uniformMat4f(Shader shader, const char* name, mat4 matrix) {
+	shader_bind(shader);
+	GLCall(glUniformMatrix4fv(shader_get_uniform_location(shader, name), 1, GL_FALSE, &matrix[0][0]));
 }

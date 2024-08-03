@@ -11,5 +11,5 @@ typedef struct {
 
 Texture texture_create(const char* filepath);
 void texture_delete(Texture texture);
-void texture_bind();
-void texture_bind_slot(unsigned int slot);
+void texture_bind(Texture texture);
+void texture_bind_slot(Texture texture, unsigned int slot);

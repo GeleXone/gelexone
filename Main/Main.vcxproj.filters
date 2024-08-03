@@ -78,6 +78,7 @@
   <ItemGroup>
     <None Include="res\shaders\basic.shader" />
     <None Include="res\shaders\textured.shader" />
+    <None Include="res\shaders\projected.shader" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="..\..\..\Users\ag\Pictures\epic_yozhik.jpg">

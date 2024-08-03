@@ -25,7 +25,7 @@ Texture texture_create(const char* filepath) {
 }
 
 void texture_delete(Texture texture) {
-	GLCall(glDeleteTextures(1, texture.id));
+	GLCall(glDeleteTextures(1, &texture.id));
 }
 
 void texture_unbind() {

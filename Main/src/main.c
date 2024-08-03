@@ -5,14 +5,22 @@
 #pragma comment(lib, "glad")
 #pragma comment(lib, "Xone")
 
+#include <Xone/x_math.h>
+
 #include "Renderer.h"
 #include "Texture.h"
 
-float positions[4 * 4] = {
+float positions0[4 * 4] = {
 	-0.5f, -0.5f, 0.0f, 0.0f,
 	 0.5f, -0.5f, 1.0f, 0.0f,
 	 0.5f,  0.5f, 1.0f, 1.0f,
 	-0.5f,  0.5f, 0.0f, 1.0f
+};
+float positions[4 * 4] = {
+	100.0f, 100.0f, 0.0f, 0.0f,
+	200.0f, 100.0f, 1.0f, 0.0f,
+	200.0f, 200.0f, 1.0f, 1.0f,
+	100.0f, 200.0f, 0.0f, 1.0f
 };
 
 unsigned int indices[6] = {
@@ -30,13 +38,14 @@ int main() {
 	glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_COMPAT_PROFILE);
 
 	//окно
-	GLFWwindow* window = glfwCreateWindow(500, 500, "gelexone render", NULL, NULL);
+	const unsigned int width = 400, height = 300;
+	GLFWwindow* window = glfwCreateWindow(width, height, "gelexone render", NULL, NULL);
 	glfwMakeContextCurrent(window);
 	glfwSwapInterval(1);
 	gladLoadGLLoader((GLADloadproc)glfwGetProcAddress);
 	printf("OpenGL version:\n%s\n", glGetString(GL_VERSION));
 
-	//blending
+	//blending для png файлов с прозрачностью
 	GLCall(glEnable(GL_BLEND));
 	GLCall(glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA));
 
@@ -54,18 +63,26 @@ int main() {
 
 	//буфер индексов
 	IndexBuffer ibo = ibo_create(indices, 6);
-	
+
 	//шейдер
-	ShaderProgramSource src = ParseShader("res/shaders/textured.shader");
+	ShaderProgramSource src = ParseShader("res/shaders/projected.shader");
 	printf("vertex shader:\n%s\n", src.VertexSource);
 	printf("fragment shader:\n%s\n", src.FragmentSource);
 	Shader shader = shader_create(src.VertexSource, src.FragmentSource);
 	shader_bind(shader);
 
+	//матрицы
+	mat4 mvp, proj, view, model1, model2;
+	mat4_create_ortho(proj, 0, width, 0, height, -1, 1);
+	mat4_create_translation(view, 0, 0, 0);
+	mat4_create_translation(model1, 0, 0, 0);
+	mat4_create_translation(model2, 100, 0, 0);
+	
 	//текстура
-	Texture texture = texture_create("res/textures/epic_yozhik.jpg");
-	texture_bind(texture);
-	shader_set_uniform1i(shader, "u_Texture", 0);
+	Texture texture0 = texture_create("res/textures/yozhik_emoji.png"),
+		texture1 = texture_create("res/textures/epic_yozhik.png");
+	texture_bind_slot(texture0, 0);
+	texture_bind_slot(texture1, 1);
 
 	//сбрасываем все бинды буферов для отладки
 	shader_unbind();
@@ -74,21 +91,25 @@ int main() {
 	ibo_unbind();
 
 	//рендер
-	GLCall(glClearColor(0.0f,0.0f,1.0f,0.0f));
+	GLCall(glClearColor(0.2f,0.7f,0.4f,0.0f));
 	float r = 0.2f, increment = 0.05f;
 	while (!glfwWindowShouldClose(window))
 	{
 		render_clear();
 
-		/*shader_set_uniform4f(shader, "u_Color", r, r, 0, 0.0f);
-		if (r > 1.0f) {
-			increment = -0.05f;
-		} else if (r < 0.0f) {
-			increment = 0.05f;
+		{
+			mat4_calc_MVP(mvp, proj, view, model1);
+			shader_set_uniformMat4f(shader, "u_MVP", mvp);
+			shader_set_uniform1i(shader, "u_Texture", 0);
+			render_draw(vao, ibo, shader);
 		}
-		r += increment;*/
 
-		render_draw(vao, ibo, shader);
+		{
+			mat4_calc_MVP(mvp, proj, view, model2);
+			shader_set_uniformMat4f(shader, "u_MVP", mvp);
+			shader_set_uniform1i(shader, "u_Texture", 1);
+			render_draw(vao, ibo, shader);
+		}
 
 		glfwSwapBuffers(window);
 		glfwPollEvents();

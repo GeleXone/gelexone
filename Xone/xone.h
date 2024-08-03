@@ -21,3 +21,4 @@ typedef unsigned char boolean;
 #define PI  3.141592653 /* Определение числа PI */
 /* Магическое число для quake3_sqrt 0x5f375a86 или 0x5f3759df */
 
+#define XONE_FUNC static inline
