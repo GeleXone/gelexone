@@ -11,6 +11,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "GX_Libraries", "GX_Librarie
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Main", "Main\Main.vcxproj", "{8AD45FE0-1759-40BC-9A3C-71F88FF303EF}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "GX-gui", "GX-gui\GX-gui.vcxproj", "{6D13B860-1D4E-475C-969C-F8F530673EDC}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -43,12 +45,21 @@ Global
 		{8AD45FE0-1759-40BC-9A3C-71F88FF303EF}.Release|x64.Build.0 = Release|x64
 		{8AD45FE0-1759-40BC-9A3C-71F88FF303EF}.Release|x86.ActiveCfg = Release|Win32
 		{8AD45FE0-1759-40BC-9A3C-71F88FF303EF}.Release|x86.Build.0 = Release|Win32
+		{6D13B860-1D4E-475C-969C-F8F530673EDC}.Debug|x64.ActiveCfg = Debug|x64
+		{6D13B860-1D4E-475C-969C-F8F530673EDC}.Debug|x64.Build.0 = Debug|x64
+		{6D13B860-1D4E-475C-969C-F8F530673EDC}.Debug|x86.ActiveCfg = Debug|Win32
+		{6D13B860-1D4E-475C-969C-F8F530673EDC}.Debug|x86.Build.0 = Debug|Win32
+		{6D13B860-1D4E-475C-969C-F8F530673EDC}.Release|x64.ActiveCfg = Release|x64
+		{6D13B860-1D4E-475C-969C-F8F530673EDC}.Release|x64.Build.0 = Release|x64
+		{6D13B860-1D4E-475C-969C-F8F530673EDC}.Release|x86.ActiveCfg = Release|Win32
+		{6D13B860-1D4E-475C-969C-F8F530673EDC}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{EBC0D90B-7603-42EA-95DD-5483A47ED95D} = {D8F6AE9E-D504-42BF-9978-ED93D4153716}
+		{6D13B860-1D4E-475C-969C-F8F530673EDC} = {D8F6AE9E-D504-42BF-9978-ED93D4153716}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {1A973D5C-8ABC-476F-82AA-8FF4EB4B3939}

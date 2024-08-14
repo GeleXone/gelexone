@@ -1,4 +1,5 @@
 #pragma once
+#include "xone.h"
 
 float x_sqrt(float number);
 
@@ -49,10 +50,18 @@ void vec3_mul_cross(vec3 r, vec3 a, vec3 b);
 void vec4_mul_cross(vec4 r, vec4 a, vec4 b);
 void mat4_copy(mat4 r, mat4 src);
 void mat4_transpose(mat4 r, mat4 M);
+
 void mat4_create_translation(mat4 M, float x, float y, float z);
 void mat4_create_scaling(mat4 M, float x, float y, float z);
 void mat4_create_ortho(mat4 M, float left, float right, float bottom, float top, float zNear, float zFar);
+void mat4_create_perspective(mat4 M, float left, float right, float bottom, float top, float zNear, float zFar);
+
+void mat4_create_rotation_z(mat4 M, float a);
+void mat4_create_rotation_y(mat4 M, float a);
+void mat4_create_rotation_x(mat4 M, float a);
+
 
 void mat4_mul_vec4(vec4 r, mat4 M, vec4 v);
 void mat4_mul_mat4(mat4 r, mat4 left, mat4 right);
-void mat4_calc_MVP(mat4 MVP, mat4 proj, mat4 view, mat4 model);
+void mat4_calc_MVP(mat4 MVP, mat4 proj, mat4 view, mat4 model, mat4 rotation);
+

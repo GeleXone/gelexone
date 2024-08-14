@@ -1,4 +1,5 @@
 #include "x_math.h"
+#include <math.h>
 
 float x_sqrt(float number)
 {
@@ -79,6 +80,48 @@ void mat4_create_ortho(mat4 M, float left, float right, float bottom, float top,
 	};
 	mat4_copy(M, temp);
 }
+void mat4_create_perspective(mat4 M, float left, float right, float bottom, float top, float zNear, float zFar)
+{
+	mat4 temp = { 
+		{(2.0f * zNear) / (right - left),0,(right+left)/(right-left),	0},
+		{0,	(2.0f * zNear) / (top - bottom),(top+bottom)/(top-bottom),	0},
+		{0,	0, -((zFar+zNear) / (zFar - zNear)),	-((2 * zFar * zNear) / (zFar - zNear))},
+		{0,	0,	-1, 0}
+	};
+	mat4_copy(M, temp);
+}
+
+void mat4_create_rotation_z(mat4 M, float theta)
+{
+	mat4 temp = {
+		cosf(theta), sinf(theta), 0, 0,
+		-sinf(theta),cosf(theta), 0, 0,
+		0,			0,			1, 0,
+		0,			0,			0, 1
+	};
+	mat4_copy(M, temp);
+}
+void mat4_create_rotation_y(mat4 M, float theta)
+{
+	mat4 temp = {
+		cosf(theta), 0, -sinf(theta), 0,
+				 0, 1,           0, 0,
+		sinf(theta), 0,  cosf(theta), 0,
+				 0, 0,           0, 1
+	};
+	mat4_copy(M, temp);
+}
+void mat4_create_rotation_x(mat4 M, float theta)
+{
+	mat4 temp = {
+		1, 0, 0, 0,
+		0, cosf(theta), sinf(theta), 0,
+		0, -sinf(theta), cosf(theta), 0,
+		0, 0, 0, 1
+	};
+	mat4_copy(M, temp);
+}
+
 
 void mat4_mul_vec4(vec4 r, mat4 M, vec4 v)
 {
@@ -96,6 +139,14 @@ void mat4_mul_vec4(vec4 r, mat4 M, vec4 v)
 }
 
 void mat4_mul_mat4(mat4 r, mat4 left, mat4 right) {
+	if (right == (void*)0) {
+		mat4_copy(r, left);
+		return;
+	}
+	if (left == (void*)0) {
+		mat4_copy(r, right);
+		return;
+	}
 	mat4 temp = {
 		{0,0,0,0},
 		{0,0,0,0},
@@ -107,10 +158,4 @@ void mat4_mul_mat4(mat4 r, mat4 left, mat4 right) {
 			for (unsigned char k = 0; k < 4; k++)
 				temp[j][i] += left[k][i] * right[j][k];
 	mat4_copy(r, temp);
-}
-
-void mat4_calc_MVP(mat4 MVP, mat4 proj, mat4 view, mat4 model)
-{
-	mat4_mul_mat4(MVP, proj, view);
-	mat4_mul_mat4(MVP, MVP, model);
 }
