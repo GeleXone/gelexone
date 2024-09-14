@@ -24,6 +24,7 @@
     <ProjectGuid>{8ad45fe0-1759-40bc-9a3c-71f88ff303ef}</ProjectGuid>
     <RootNamespace>Main</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
+    <ProjectName>Main</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -134,37 +135,6 @@
       <AdditionalLibraryDirectories>$(SolutionDir)\lib\;$(SolutionDir)\Debug\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
-  <ItemGroup>
-    <ClCompile Include="src\gl_debug.c" />
-    <ClCompile Include="src\IndexBuffer.c" />
-    <ClCompile Include="src\main.c" />
-    <ClCompile Include="src\Renderer.c" />
-    <ClCompile Include="src\Shader.c" />
-    <ClCompile Include="src\Texture.c" />
-    <ClCompile Include="src\vendor\stb_image\stb_image.c" />
-    <ClCompile Include="src\VertexArray.c" />
-    <ClCompile Include="src\VertexBuffer.c" />
-    <ClCompile Include="src\VertexBufferLayout.c" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="src\gl_debug.h" />
-    <ClInclude Include="src\IndexBuffer.h" />
-    <ClInclude Include="src\Renderer.h" />
-    <ClInclude Include="src\Shader.h" />
-    <ClInclude Include="src\Texture.h" />
-    <ClInclude Include="src\vendor\stb_image\stb_image.h" />
-    <ClInclude Include="src\VertexArray.h" />
-    <ClInclude Include="src\VertexBuffer.h" />
-    <ClInclude Include="src\VertexBufferLayout.h" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="res\shaders\basic.shader" />
-    <None Include="res\shaders\projected.shader" />
-    <None Include="res\shaders\textured.shader" />
-  </ItemGroup>
-  <ItemGroup>
-    <Image Include="..\..\..\Users\ag\Pictures\epic_yozhik.jpg" />
-  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

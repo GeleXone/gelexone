@@ -1,5 +1,5 @@
 #pragma once
-#include "Xone.h"
+#include "Xone/xone.h"
 #include <stdio.h>
 
 typedef struct {
