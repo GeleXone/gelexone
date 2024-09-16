@@ -138,6 +138,17 @@ void mat4_mul_vec4(vec4 r, mat4 M, vec4 v)
 	vec4_copy(r, temp);
 }
 
+void mat4_add(mat4 r, mat4 src)
+{
+	float* ptr = (float*)r;
+	float* srcptr = (float*)src;
+	//assert(ptr != srcptr);
+	for (int i = 0; i < sizeof(mat4) / sizeof(float); i++)
+	{
+		ptr[i] += srcptr[i];
+	}
+}
+
 void mat4_mul_mat4(mat4 r, mat4 left, mat4 right) {
 	if (right == (void*)0) {
 		mat4_copy(r, left);

@@ -1,6 +1,7 @@
-#files
-
-#directories
+# Visual Studio
 .vs
-Debug
-Release
+*.vcxproj*
+*.sln
+# build folders
+bin
+bin-int

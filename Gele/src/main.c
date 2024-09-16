@@ -1,6 +1,6 @@
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
-#pragma comment(lib, "glfw3")
+//#pragma comment(lib, "glfw3")
 #pragma comment(lib, "opengl32")
 #pragma comment(lib, "glad")
 #pragma comment(lib, "Xone")
@@ -9,6 +9,8 @@
 
 #include "Renderer.h"
 #include "Texture.h"
+
+#include "Camera.h"
 
 #define VERTEXCOUNT 8 * 5
 #define INDICESCOUNT 6 * 6
@@ -125,6 +127,7 @@ int main() {
 	{
 		render_clear();
 
+		camera_move(window, view);
 		mat4_create_rotation_y(pyr_rotation1, angle);
 			mat4_mul_mat4(mvp, proj, 0);
 			//mat4_mul_mat4(mvp, mvp, camera_rotation);
@@ -138,6 +141,7 @@ int main() {
 		if (glfwGetKey(window, GLFW_KEY_SPACE) == GLFW_PRESS) {
 			angle += 0.05f * PI;
 		}
+		
 
 		glfwSwapBuffers(window);
 		glfwPollEvents();
