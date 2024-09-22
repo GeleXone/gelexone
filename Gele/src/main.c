@@ -27,17 +27,17 @@ float positions[VERTEXCOUNT] = {
 	-1.0f, -1.0f, -1.0f, 1.0f, 0.0f, //7
 };
 unsigned int indices[INDICESCOUNT] = {
-	0, 1, 7, //лево
+	0, 1, 7, //Р»РµРІРѕ
 	7, 6, 1,
-	0, 7, 4, //низ
+	0, 7, 4, //РЅРёР·
 	4, 3, 0,
-	2, 3, 4, //право
+	2, 3, 4, //РїСЂР°РІРѕ
 	4, 5, 2,
-	6, 7, 4, //зад
+	6, 7, 4, //Р·Р°Рґ
 	4, 5, 6,
-	1, 6, 5, //верх
+	1, 6, 5, //РІРµСЂС…
 	2, 5, 1,
-	0, 1, 2, //перед
+	0, 1, 2, //РїРµСЂРµРґ
 	2, 3, 0
 };
 
@@ -51,7 +51,7 @@ void gx_keyfunc(GLFWwindow* window, int key, int scancode, int action, int mods)
 }
 
 int main() {
-	//инициализация
+	//РёРЅРёС†РёР°Р»РёР·Р°С†РёСЏ
 	if (!glfwInit()) {
 		return -1;
 	}
@@ -59,7 +59,7 @@ int main() {
 	glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
 	glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_COMPAT_PROFILE);
 
-	//окно
+	//РѕРєРЅРѕ
 	const float width = 400, height = 300;
 	GLFWwindow* window = glfwCreateWindow((int)width, (int)height, "gelexone render", NULL, NULL);
 	glfwMakeContextCurrent(window);
@@ -67,29 +67,29 @@ int main() {
 	gladLoadGLLoader((GLADloadproc)glfwGetProcAddress);
 	printf("OpenGL version:\n%s\n", glGetString(GL_VERSION));
 
-	//настройка функций glfw
+	//РЅР°СЃС‚СЂРѕР№РєР° С„СѓРЅРєС†РёР№ glfw
 	//glfwSetKeyCallback(window, gx_keyfunc);
 
-	//blending для png файлов с прозрачностью
+	//blending РґР»СЏ png С„Р°Р№Р»РѕРІ СЃ РїСЂРѕР·СЂР°С‡РЅРѕСЃС‚СЊСЋ
 	GLCall(glEnable(GL_BLEND));
 	GLCall(glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA));
 
-	//массив вершин
+	//РјР°СЃСЃРёРІ РІРµСЂС€РёРЅ
 	VertexArray vao = vao_create();
 
-	//буфер вершин
+	//Р±СѓС„РµСЂ РІРµСЂС€РёРЅ
 	VertexBuffer vbo = vbo_create(positions, VERTEXCOUNT * sizeof(float));
 
-	//layout буфера вершин
+	//layout Р±СѓС„РµСЂР° РІРµСЂС€РёРЅ
 	VertexBufferLayout* vbl = vbl_create();
 	vbl_push(vbl, GL_FLOAT, 3, GL_FALSE);
 	vbl_push(vbl, GL_FLOAT, 2, GL_FALSE);
 	vao_add_buffer(vao, vbo, vbl);
 
-	//буфер индексов
+	//Р±СѓС„РµСЂ РёРЅРґРµРєСЃРѕРІ
 	IndexBuffer ibo = ibo_create(indices, INDICESCOUNT);
 
-	//шейдер
+	//С€РµР№РґРµСЂ
 	ShaderProgramSource src = ParseShader("res/shaders/projected.shader");
 	printf("vertex shader:\n%s\n", src.VertexSource);
 	printf("fragment shader:\n%s\n", src.FragmentSource);
@@ -97,7 +97,7 @@ int main() {
 	shader_bind(shader);
 
 
-	//матрицы
+	//РјР°С‚СЂРёС†С‹
 	mat4 mvp, proj, view, model, camera_rotation, pyr_rotation0, pyr_rotation1;
 	//mat4_create_ortho(proj, -2.0f, 2.0f, -1.5f, 1.5f, -1.0f, 1.0f);
 	mat4_create_perspective(proj, -1, 1, -height / width, height / width, -1, 1);
@@ -105,12 +105,12 @@ int main() {
 	mat4_create_translation(model, 0, 0, 0);
 	mat4_create_rotation_x(pyr_rotation0, PI);
 	
-	//текстура
+	//С‚РµРєСЃС‚СѓСЂР°
 	Texture texture0 = texture_create("res/textures/epic_yozhik.png");
 	texture_bind_slot(texture0, 0);
 	shader_set_uniform1i(shader, "u_Texture", 0);
 
-	//сбрасываем все бинды буферов для отладки
+	//СЃР±СЂР°СЃС‹РІР°РµРј РІСЃРµ Р±РёРЅРґС‹ Р±СѓС„РµСЂРѕРІ РґР»СЏ РѕС‚Р»Р°РґРєРё
 	shader_unbind();
 	vao_unbind();
 	vbo_unbind();
@@ -121,7 +121,7 @@ int main() {
 	// Accept fragment if it closer to the camera than the former one
 	GLCall(glDepthFunc(GL_LESS));
 
-	//рендер
+	//СЂРµРЅРґРµСЂ
 	GLCall(glClearColor(0.2f,0.7f,0.4f,0.0f));
 	while (!glfwWindowShouldClose(window))
 	{
@@ -147,7 +147,7 @@ int main() {
 		glfwPollEvents();
 	}
 
-	//завершение работы
+	//Р·Р°РІРµСЂС€РµРЅРёРµ СЂР°Р±РѕС‚С‹
 	glfwTerminate();
 	return 0;
 }

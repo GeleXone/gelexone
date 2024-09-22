@@ -15,7 +15,7 @@ float x_sqrt(float number)
 	return number * y;
 }
 
-// отличающиеся функции векторов большей размерности
+// РѕС‚Р»РёС‡Р°СЋС‰РёРµСЃСЏ С„СѓРЅРєС†РёРё РІРµРєС‚РѕСЂРѕРІ Р±РѕР»СЊС€РµР№ СЂР°Р·РјРµСЂРЅРѕСЃС‚Рё
 void vec3_mul_cross(vec3 r, vec3 a, vec3 b)
 {
 	r[0] = a[1] * b[2] - a[2] * b[1];
@@ -30,7 +30,7 @@ void vec4_mul_cross(vec4 r, vec4 a, vec4 b)
 	r[3] = 1.f;
 }
 
-// matrix[n][m] - n столбец, m строка.
+// matrix[n][m] - n СЃС‚РѕР»Р±РµС†, m СЃС‚СЂРѕРєР°.
 void mat4_copy(mat4 r, mat4 src)
 {
 	float* ptr = (float*)r;

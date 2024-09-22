@@ -4,7 +4,7 @@ typedef struct {
 	unsigned int id;
 } VertexBuffer;
 
-// size = кол-во вершин * размер вершины * sizeof(type)
+// size = РєРѕР»-РІРѕ РІРµСЂС€РёРЅ * СЂР°Р·РјРµСЂ РІРµСЂС€РёРЅС‹ * sizeof(type)
 VertexBuffer vbo_create(const void* data, unsigned int size);
 void vbo_delete(VertexBuffer vbo);
 void vbo_bind(VertexBuffer vbo);

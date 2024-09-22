@@ -1,15 +1,15 @@
 #pragma once
 
 #if !defined(TRUE)
-#define TRUE 1 /* ИСТИНА */
+#define TRUE 1 /* РРЎРўРРќРђ */
 #endif
 #if !defined(FALSE)
-#define FALSE 0 /* ЛОЖЬ */
+#define FALSE 0 /* Р›РћР–Р¬ */
 #endif
 
 typedef unsigned char boolean;
 
-#define PI  3.141592653 /* Определение числа PI */
-/* Магическое число для quake3_sqrt 0x5f375a86 или 0x5f3759df */
+#define PI  3.141592653 /* РћРїСЂРµРґРµР»РµРЅРёРµ С‡РёСЃР»Р° PI */
+/* РњР°РіРёС‡РµСЃРєРѕРµ С‡РёСЃР»Рѕ РґР»СЏ quake3_sqrt 0x5f375a86 РёР»Рё 0x5f3759df */
 
 #define XONE_FUNC static inline

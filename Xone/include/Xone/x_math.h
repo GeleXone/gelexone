@@ -64,4 +64,3 @@ void mat4_add(mat4 r, mat4 src);
 void mat4_mul_vec4(vec4 r, mat4 M, vec4 v);
 void mat4_mul_mat4(mat4 r, mat4 left, mat4 right);
 void mat4_calc_MVP(mat4 MVP, mat4 proj, mat4 view, mat4 model, mat4 rotation);
-

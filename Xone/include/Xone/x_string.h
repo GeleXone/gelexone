@@ -1,7 +1,7 @@
 #pragma once
 #include "Xone/xone.h"
 
-//Êîëè÷åñòâî ÑÈÌÂÎËÎÂ, áåç '\0'
+//ĞšĞ¾Ğ»Ğ¸Ñ‡ĞµÑÑ‚Ğ²Ğ¾ Ğ¡Ğ˜ĞœĞ’ĞĞ›ĞĞ’, Ğ±ĞµĞ· '\0'
 unsigned int x_strlen(const char* string);
 char* x_strcat(char* base_string, const char* other_string);
 char* x_straddc(char* base, char c);

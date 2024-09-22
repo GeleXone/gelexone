@@ -1,6 +1,6 @@
 #include "Xone/x_string.h"
 
-//Количество СИМВОЛОВ, без '\0'
+//РљРѕР»РёС‡РµСЃС‚РІРѕ РЎРРњР’РћР›РћР’, Р±РµР· '\0'
 unsigned int x_strlen(const char* string) {
 	unsigned int i = 0;
 	for (; string[i] != '\0'; i++);

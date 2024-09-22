@@ -5,17 +5,16 @@
 #include "gl_debug.h"
 #include "Shader.h"
 
-//эта штука достаёт два шейдера из одного текстового файла
+//СЌС‚Р° С€С‚СѓРєР° РґРѕСЃС‚Р°С‘С‚ РґРІР° С€РµР№РґРµСЂР° РёР· РѕРґРЅРѕРіРѕ С‚РµРєСЃС‚РѕРІРѕРіРѕ С„Р°Р№Р»Р°
 enum ShaderType {
 	NONE = 0, VERTEX = 1, FRAGMENT = 2
 };
 ShaderProgramSource ParseShader(const char* filepath) {
 	const char* vert = "#shader vertex\n";
 	const char* frag = "#shader fragment\n";
-	FILE* file;
 	char vs[4000] = "";
 	char fs[4000] = "";
-	fopen_s(&file, filepath, "r");
+	FILE* file = fopen(filepath, "r");
 	char buffer[128];
 	unsigned char mode = NONE;
 	if (file) {
@@ -50,7 +49,7 @@ ShaderProgramSource ParseShader(const char* filepath) {
 	return result;
 }
 
-//тут уже начинается OpenGL
+//С‚СѓС‚ СѓР¶Рµ РЅР°С‡РёРЅР°РµС‚СЃСЏ OpenGL
 #include <glad/glad.h>
 
 unsigned int shader_compile(unsigned int type, const char** source)
@@ -64,9 +63,10 @@ unsigned int shader_compile(unsigned int type, const char** source)
 	if (result == GL_FALSE) {
 		int length;
 		GLCall(glGetShaderiv(id, GL_INFO_LOG_LENGTH, &length));
-		char* message = (char*)_malloca(length * sizeof(char));
+		char* message = (char*)malloc(length * sizeof(char));
 		GLCall(glGetShaderInfoLog(id, length, &length, message));
 		printf("Compile %s shader status: %s\n", (type == GL_VERTEX_SHADER) ? "vertex" : "fragment", message);
+		free(message);
 	}
 
 	return id;
