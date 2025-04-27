@@ -1,2 +1,2 @@
-premake5 vs2022
+CALL premake\premake5.exe vs2022
 PAUSE
